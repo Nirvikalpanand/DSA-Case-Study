@@ -1,0 +1,40 @@
+emails = {}
+
+while True:
+    print("\n===== EMAIL ADDRESS SEARCH SYSTEM =====")
+    print("1. Add Email")
+    print("2. Search Email")
+    print("3. Display All Emails")
+    print("4. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        name = input("Enter person's name: ")
+        email = input("Enter email address: ")
+
+        emails[name.lower()] = email
+        print("Email added successfully!")
+
+    elif choice == "2":
+        name = input("Enter name to search: ").lower()
+
+        if name in emails:
+            print("Email Address:", emails[name])
+        else:
+            print("Email not found!")
+
+    elif choice == "3":
+        if emails:
+            print("\nSaved Email Addresses:")
+            for name, email in emails.items():
+                print(name.title(), "-", email)
+        else:
+            print("No emails saved.")
+
+    elif choice == "4":
+        print("Thank you!")
+        break
+
+    else:
+        print("Invalid choice! Try again.")
