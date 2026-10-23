@@ -1,0 +1,47 @@
+def compress(text):
+    result = ""
+    i = 0
+
+    while i < len(text):
+        count = 1
+
+        while i + 1 < len(text) and text[i] == text[i + 1]:
+            count += 1
+            i += 1
+
+        result += text[i] + str(count)
+        i += 1
+
+    return result
+
+
+def decompress(text):
+    result = ""
+    i = 0
+
+    while i < len(text):
+        character = text[i]
+        i += 1
+        count = ""
+
+        while i < len(text) and text[i].isdigit():
+            count += text[i]
+            i += 1
+
+        result += character * int(count)
+
+    return result
+
+
+print("===== TEXT DATA SIZE REDUCER =====")
+
+text = input("Enter text (avoid digits): ")
+
+compressed = compress(text)
+
+print("Original Text:", text)
+print("Compressed Text:", compressed)
+print("Original Size:", len(text), "characters")
+print("Compressed Size:", len(compressed), "characters")
+
+print("Decompressed Text:", decompress(compressed))
