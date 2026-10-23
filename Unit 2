@@ -1,0 +1,32 @@
+friends = {
+    "Rahul": ["Amit", "Priya"],
+    "Amit": ["Rahul", "Priya", "Sneha"],
+    "Priya": ["Rahul", "Amit", "Sneha"],
+    "Sneha": ["Amit", "Priya"]
+}
+
+print("===== FACEBOOK FRIEND CONNECTION ANALYSIS =====")
+
+print("\nFriend Connections:")
+for user, friend_list in friends.items():
+    print(user, "->", ", ".join(friend_list))
+
+name = input("\nEnter user name: ").strip().title()
+
+if name in friends:
+    print("Friends of", name, ":", ", ".join(friends[name]))
+else:
+    print("User not found!")
+
+user1 = input("\nEnter first user name: ").strip().title()
+user2 = input("Enter second user name: ").strip().title()
+
+if user1 in friends and user2 in friends:
+    mutual = set(friends[user1]) & set(friends[user2])
+
+    if mutual:
+        print("Mutual Friends:", ", ".join(sorted(mutual)))
+    else:
+        print("No mutual friends found.")
+else:
+    print("One or both users were not found.")
