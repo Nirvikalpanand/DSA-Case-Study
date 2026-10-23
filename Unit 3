@@ -1,0 +1,45 @@
+import heapq
+
+patients = []
+
+while True:
+    print("\n===== EMERGENCY PATIENT MANAGEMENT =====")
+    print("1. Add Patient")
+    print("2. Treat Highest Priority Patient")
+    print("3. Display Waiting Patients")
+    print("4. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        name = input("Enter patient name: ")
+        priority = int(input("Enter priority (1=High, 2=Medium, 3=Low): "))
+
+        if priority not in [1, 2, 3]:
+            print("Invalid priority!")
+        else:
+            heapq.heappush(patients, (priority, name))
+            print("Patient added successfully!")
+
+    elif choice == "2":
+        if patients:
+            priority, name = heapq.heappop(patients)
+            print("Treating patient:", name)
+            print("Priority:", priority)
+        else:
+            print("No patients waiting.")
+
+    elif choice == "3":
+        if patients:
+            print("\nWaiting Patients:")
+            for priority, name in sorted(patients):
+                print(name, "- Priority:", priority)
+        else:
+            print("No patients waiting.")
+
+    elif choice == "4":
+        print("Emergency management system closed.")
+        break
+
+    else:
+        print("Invalid choice! Try again.")
